@@ -21,19 +21,27 @@ app.post("/login", async (req, res) => {
         msg: "Successfully submitted!",
         data
     })
-
-
 })
 
 app.delete("/data/:id", async (req, res) => {
 
     console.log(req.params.id)
-
     await collectionData.findByIdAndDelete(req.params.id)
-
     res.status(201).json({
-         msg: "Successfully deleted!",
+        msg: "Successfully deleted!",
     })
+})
+
+app.patch("/data/:id", async (req, res) => {
+
+    let dataUpdate = req.body
+
+    console.log(req.body.email)
+
+    let params = req.params.id;
+    let data = await collectionData.findOneAndUpdate({ _id: params }, { email: req.body.email });
+
+    res.send("Successfully update username");
 
 })
 

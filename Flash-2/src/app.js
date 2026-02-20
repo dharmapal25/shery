@@ -30,14 +30,9 @@ app.put("/put/:id", (req, res) => {
     appData[req.params.id].name = "Dharmapal"
     console.log(appData)
 
-    res.send("Update your data!")
+    res.send("Update your all data!")
 
 })
-
-
-
-
-
 
 
 app.patch("/patch/:id", (req, res) => {
