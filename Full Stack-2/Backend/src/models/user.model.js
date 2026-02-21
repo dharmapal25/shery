@@ -1,6 +1,5 @@
 const mongo = require("mongoose");
 
-
 const userSchema = new mongo.Schema({
     username : {
         type : String,
@@ -25,7 +24,6 @@ const userSchema = new mongo.Schema({
         default : Date.now
     }
 })
-
 
 const userInfos = mongo.model("userInfo",userSchema);
 module.exports = userInfos;

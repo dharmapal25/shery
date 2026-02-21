@@ -4,7 +4,7 @@ import "./App.css"
 const App = () => {
 
   const [data, setData] = useState([]);
-  const [editData, setEditData] = useState(null);
+  const [editData, setEditData] = useState([]);
 
   console.log(editData);
 
