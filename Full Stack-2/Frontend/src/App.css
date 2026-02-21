@@ -54,6 +54,10 @@ span {
   color: #b6b6b6;
 }
 
+.forms {
+  display: flex;
+}
+
 form {
   display: flex;
   justify-content: center;

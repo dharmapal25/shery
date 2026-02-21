@@ -4,6 +4,9 @@ import "./App.css"
 const App = () => {
 
   const [data, setData] = useState([]);
+  const [editData, setEditData] = useState(null);
+
+  console.log(editData);
 
   function fetchData() {
 
@@ -49,18 +52,57 @@ const App = () => {
   }
 
 
-  // data.map
+  function editBtn(e) {
+    setEditData(e);
+  }
+
+  function handleDone(e) {
+    e.preventDefault()
+
+    let { email } = e.target.elements
+
+    axios.patch(`http://localhost:8000/update/${editData._id}`, {
+      email: email.value
+    })
+      .then((res) => {
+        fetchData()
+        setEditData("")
+
+      }).catch((err) => {
+        console.log("ERROR : ", err);
+      })
+
+  }
+
 
   return (
-    <div>
-      <h1>React app</h1>
 
-      <form onSubmit={handleSubmit}>
-        <input type="text" placeholder='Enter name' name='username' />
-        <input type="email" placeholder='Enter email' name='email' />
-        <input type="number" placeholder='Enter register' name='register' />
-        <button>Submit</button>
-      </form>
+    <div>
+
+      <h1>React app</h1>
+      <div className="forms">
+        <form onSubmit={handleSubmit}>
+          <h2>Create users</h2>
+          <input type="text" placeholder='Enter name' name='username' />
+          <input type="email" placeholder='Enter email' name='email' />
+          <input type="number" placeholder='Enter register' name='register' />
+          <button>Submit</button>
+        </form>
+
+        {
+          editData &&
+
+          <form onSubmit={handleDone}>
+            <h2>Edit user</h2>
+            <input type="text" placeholder='Enter name' name='username' readOnly defaultValue={editData.username} style={{ cursor: 'no-drop' }} />
+            <input type="email" placeholder='Enter email' name='email' defaultValue={editData.email} />
+            <button>Done</button>
+          </form>
+
+        }
+
+      </div>
+
 
       <div className="cards">
 
@@ -77,8 +119,8 @@ const App = () => {
                 <p>ID : <span> {e._id} </span> </p>
 
                 <div className="main-btn">
-                  <button onClick={() => deleteBtn(e._id)} >Delete</button>
-                  <button>Edit</button>
+                  <button onClick={() => deleteBtn(e._id)}>Delete</button>
+                  <button onClick={() => editBtn(e)}>Edit</button>
                 </div>
               </div>
             )
