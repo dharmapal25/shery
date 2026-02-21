@@ -48,7 +48,9 @@ const App = () => {
 
 
   function onUpdateId(user) {
-    setEditUser(user) 
+    setEditUser(user)
+    console.log(user)
+    
   }
 
   function handleUpdate(e) {

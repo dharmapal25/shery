@@ -1,10 +1,16 @@
 const express = require("express");
 const collectionData = require("./models/users.model");
 const cors = require("cors");
-
+const path = require("path");
 const app = express();
 app.use(express.json());
 app.use(cors())
+
+
+
+app.use(express.static("./public"))
+
+console.log(path.path)
 
 app.get("/", (req, res) => {
     res.send("Hello world!");
