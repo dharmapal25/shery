@@ -1,0 +1,15 @@
+==> Authentication
+    > register
+    > login
+    > logout
+
+==> Post
+    > create
+    > can see the feed
+    > like posts
+    > save posts
+
+==> Users
+    > followers
+    > following
+    
