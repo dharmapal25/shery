@@ -10,6 +10,13 @@ async function postCreate(req, res) {
     // console.log(req.body, req.file)
 
 
+    // ✅ Correct Version
+
+//     const imageOutput = await imageKey.files.upload({
+//     file: await toFile(req.file.buffer, req.file.originalname),
+//     fileName: req.file.originalname
+//      });
+
     const imageOutput = await imageKey.files.upload({
         file: await toFile(Buffer.from(req.file.buffer), 'file'),
         fileName: "test"
